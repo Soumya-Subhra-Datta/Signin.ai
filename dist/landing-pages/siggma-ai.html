@@ -598,6 +598,19 @@ body.machine #topnav,body.machine #layout{display:none}
     
       /* ===== signin.ai custom sections ===== */
       #lab, #usecases, #security, #proof { position: relative !important; }
+      #lab .big, #usecases .big, #security .big, #proof .big {
+        grid-column: 1/-1 !important;
+        color: var(--w2) !important;
+        margin-top: 24px !important;
+      }
+      #lab .big p, #usecases .big p, #security .big p, #proof .big p {
+        text-wrap: balance !important;
+        max-width: none !important;
+      }
+      #lab .topline, #usecases .topline, #security .topline, #proof .topline {
+        grid-column: 1/-1 !important;
+        margin: 26px 0 0 !important;
+      }
       #lab .cols, #usecases .cols, #security .cols, #proof .cols,
       #lab .inner, #usecases .inner, #security .inner, #proof .inner {
         grid-column: 1/-1 !important;
