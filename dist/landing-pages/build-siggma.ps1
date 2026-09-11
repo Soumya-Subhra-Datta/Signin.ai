@@ -1,26 +1,26 @@
-# Build Siggma.ai adapted HTML from Sublevel Studio source
-# This script replaces all Sublevel Studio text content with Siggma.ai content
+# Build signin.ai adapted HTML from Sublevel Studio source
+# This script replaces all Sublevel Studio text content with signin.ai content
 # while preserving the exact Three.js scene, CSS, and interactive elements.
 
 $src = Join-Path $PSScriptRoot "..\sublevel-studio.html"
-$dst = Join-Path $PSScriptRoot "siggma-ai.html"
+$dst = Join-Path $PSScriptRoot "signin-ai.html"
 
 # Read source
 $content = Get-Content -Path $src -Raw -Encoding UTF8
 
 # ── HTML HEAD ─────────────────────────────────────────────────────
-$content = $content -replace '<title>sublevel\.studio \| We build the stuff people remember\.</title>', '<title>siggma.ai | AI-powered sales intelligence for modern teams.</title>'
-$content = $content -replace 'content="sublevel\. is a digital studio &amp; brand workshop building the stuff people remember\. A single-file Three\.js experience\."', 'content="siggma.ai is an AI-powered sales support and sales intelligence platform. A single-file Three.js experience."'
+$content = $content -replace '<title>sublevel\.studio \| We build the stuff people remember\.</title>', '<title>signin.ai | AI-powered sales intelligence for modern teams.</title>'
+$content = $content -replace 'content="sublevel\. is a digital studio &amp; brand workshop building the stuff people remember\. A single-file Three\.js experience\."', 'content="signin.ai is an AI-powered sales support and sales intelligence platform. A single-file Three.js experience."'
 
 # ── LOADER ────────────────────────────────────────────────────────
-$content = $content -replace 'loading sublevel', 'loading siggma'
+$content = $content -replace 'loading sublevel', 'loading signin'
 
 # ── NAVIGATION ────────────────────────────────────────────────────
-$content = $content -replace 'sublevel<i>\.</i>', 'siggma<i>.</i>'
-$content = $content -replace 'agent@sublevel', 'agent@siggma'
+$content = $content -replace 'sublevel<i>\.</i>', 'signin<i>.</i>'
+$content = $content -replace 'agent@sublevel', 'agent@signin'
 
 # ── HERO SECTION ──────────────────────────────────────────────────
-$content = $content -replace 'Sublevel — studio index', 'Siggma.ai — intelligence index'
+$content = $content -replace 'Sublevel — studio index', 'signin.ai — intelligence index'
 $content = $content -replace 'Est\. 2019', 'Est. 2024'
 $content = $content -replace 'A digital studio &amp; brand workshop building the stuff people remember', 'AI-powered sales support for teams that want to sell smarter'
 $content = $content -replace 'We team up with ambitious founders, scale-ups and brands to turn strategy into products, identities and experiences that actually ship\.', 'Turn sales data into actionable intelligence. Forecast demand, identify opportunities, understand customer behavior, and help your sales team make better decisions.'
@@ -117,7 +117,7 @@ $content = $content -replace '<h3 class="f-h4" data-ps><a class="actionable" hre
 
 # ── CONTACT SECTION ──────────────────────────────────────────────
 $content = $content -replace "Let's build something loud\.", 'Let intelligence drive your revenue.'
-$content = $content -replace 'hello@sublevel\.studio', 'hello@siggma.ai'
+$content = $content -replace 'hello@sublevel\.studio', 'hello@signin.ai'
 
 # ── NEWSLETTER / FOOTER ──────────────────────────────────────────
 $content = $content -replace 'Newsletter — dispatch 026', 'Updates — dispatch 001'
@@ -129,17 +129,17 @@ $content = $content -replace 'Welcome aboard', 'You are on the list.'
 $content = $content -replace 'No spam\. Unsubscribe in one click\.', 'No spam. Unsubscribe anytime.'
 
 # ── SVG MARK ──────────────────────────────────────────────────────
-$content = $content -replace 'aria-label="SUBLEVEL\.26"', 'aria-label="SIGGMA.AI"'
-$content = $content -replace 'SUBLEVEL\.26</text>', 'SIGGMA.AI</text>'
+$content = $content -replace 'aria-label="SUBLEVEL\.26"', 'aria-label="signin.ai"'
+$content = $content -replace 'SUBLEVEL\.26</text>', 'signin.ai</text>'
 
 # ── FOOTER LINKS ─────────────────────────────────────────────────
-$content = $content -replace '<a class="blink" href="#top">Home</a><a class="blink" href="#services">Services</a><a class="blink" href="#showcase">Showcase</a><a class="blink" href="#people">People</a><a class="blink" href="#blog">Blog</a><a class="blink" href="#lab">Lab</a><a class="blink" href="mailto:hello@sublevel\.studio">Contact Us</a>', '<a class="blink" href="#top">Home</a><a class="blink" href="#services">Product</a><a class="blink" href="#showcase">Intelligence</a><a class="blink" href="#people">Use Cases</a><a class="blink" href="#blog">Lab</a><a class="blink" href="#lab">How It Works</a><a class="blink" href="mailto:hello@siggma.ai">Contact</a>'
+$content = $content -replace '<a class="blink" href="#top">Home</a><a class="blink" href="#services">Services</a><a class="blink" href="#showcase">Showcase</a><a class="blink" href="#people">People</a><a class="blink" href="#blog">Blog</a><a class="blink" href="#lab">Lab</a><a class="blink" href="mailto:hello@sublevel\.studio">Contact Us</a>', '<a class="blink" href="#top">Home</a><a class="blink" href="#services">Product</a><a class="blink" href="#showcase">Intelligence</a><a class="blink" href="#people">Use Cases</a><a class="blink" href="#blog">Lab</a><a class="blink" href="#lab">How It Works</a><a class="blink" href="mailto:hello@signin.ai">Contact</a>'
 
 # ── MENU LINKS ───────────────────────────────────────────────────
-$content = $content -replace '<a href="#top">Home</a><a href="#showcase">Work</a><a href="#services">Services</a><a href="#people">People</a><a href="#blog">Blog</a><a href="#lab">Lab</a><a href="mailto:hello@sublevel\.studio">Contact</a>', '<a href="#top">Home</a><a href="#showcase">Intelligence</a><a href="#services">Product</a><a href="#people">Use Cases</a><a href="#blog">Lab</a><a href="#lab">How It Works</a><a href="mailto:hello@siggma.ai">Contact</a>'
+$content = $content -replace '<a href="#top">Home</a><a href="#showcase">Work</a><a href="#services">Services</a><a href="#people">People</a><a href="#blog">Blog</a><a href="#lab">Lab</a><a href="mailto:hello@sublevel\.studio">Contact</a>', '<a href="#top">Home</a><a href="#showcase">Intelligence</a><a href="#services">Product</a><a href="#people">Use Cases</a><a href="#blog">Lab</a><a href="#lab">How It Works</a><a href="mailto:hello@signin.ai">Contact</a>'
 
 # ── MENU FOOT ────────────────────────────────────────────────────
-$content = $content -replace '<p><b>hello@sublevel\.studio</b></p>', '<p><b>hello@siggma.ai</b></p>'
+$content = $content -replace '<p><b>hello@sublevel\.studio</b></p>', '<p><b>hello@signin.ai</b></p>'
 $content = $content -replace '<p>Kyoto &amp; remote · open late</p>', '<p>Remote · worldwide · always on</p>'
 $content = $content -replace '<p>Est\. 2019 · dispatch 026</p>', '<p>Est. 2024 · dispatch 001</p>'
 
@@ -148,62 +148,62 @@ $content = $content -replace '<p>Est\. 2019 · dispatch 026</p>', '<p>Est. 2024 
 $content = $content -replace '<a class="active blink" href="#top">Home</a>\s*<a class="blink" href="#showcase">Work</a>\s*<a class="blink" href="#services">Services</a>\s*<a class="blink" href="#lab">Lab</a>', '<a class="active blink" href="#top">Home</a><a class="blink" href="#showcase">Intelligence</a><a class="blink" href="#services">Product</a><a class="blink" href="#lab">How It Works</a>'
 
 # ── COPYRIGHT ─────────────────────────────────────────────────────
-$content = $content -replace '© sublevel\.studio LLC 2026 all rights reserved', '© siggma.ai 2024 — AI-powered sales intelligence'
+$content = $content -replace '© sublevel\.studio LLC 2026 all rights reserved', '© signin.ai 2024 — AI-powered sales intelligence'
 
 # ── MACHINE-READABLE INDEX (pre tag) ─────────────────────────────
-$content = $content -replace 'SUBLEVEL\.STUDIO :: MACHINE-READABLE INDEX', 'SIGGMA.AI :: MACHINE-READABLE INDEX'
-$content = $content -replace '# PLAIN-TEXT MIRROR OF SUBLEVEL\.STUDIO FOR AI AGENTS, CRAWLERS, AND HUMANS WHO PREFER IT RAW\.', '# PLAIN-TEXT MIRROR OF SIGGMA.AI FOR AI AGENTS, CRAWLERS, AND HUMANS WHO PREFER IT RAW.'
-$content = $content -replace 'NAME \.{10,} SUBLEVEL\.STUDIO', 'NAME .......... SIGGMA.AI'
-$content = $content -replace 'AKA \.{10,} SUBLEVEL, SBLVL, SUBLEVELSTUDIO', 'AKA ........... SIGGMA, SIGGMAAI, SIGGMA-AI'
+$content = $content -replace 'SUBLEVEL\.STUDIO :: MACHINE-READABLE INDEX', 'signin.ai :: MACHINE-READABLE INDEX'
+$content = $content -replace '# PLAIN-TEXT MIRROR OF SUBLEVEL\.STUDIO FOR AI AGENTS, CRAWLERS, AND HUMANS WHO PREFER IT RAW\.', '# PLAIN-TEXT MIRROR OF signin.ai FOR AI AGENTS, CRAWLERS, AND HUMANS WHO PREFER IT RAW.'
+$content = $content -replace 'NAME \.{10,} SUBLEVEL\.STUDIO', 'NAME .......... signin.ai'
+$content = $content -replace 'AKA \.{10,} SUBLEVEL, SBLVL, SUBLEVELSTUDIO', 'AKA ........... signin, signinAI, signin-AI'
 $content = $content -replace 'FOUNDED \.{10,} 2021', 'FOUNDED ....... 2024'
 $content = $content -replace 'LOCATION \.{10,} PORTO, PORTUGAL \(PT\)', 'LOCATION ...... WORLDWIDE'
 $content = $content -replace 'AREA_SERVED \.{10,} WORLDWIDE', 'AREA_SERVED ... WORLDWIDE'
 $content = $content -replace 'SERVICES \.{10,} WEBSITE DESIGN AND ENGINEERING, VISUAL BRAND IDENTITY, REAL-TIME 3D EXPERIENCES, MARKETING EXECUTION, PRODUCT ENGINEERING', 'SERVICES ...... SALES FORECASTING, OPPORTUNITY INTELLIGENCE, CUSTOMER INTELLIGENCE, AI SALES ASSISTANT, PIPELINE INTELLIGENCE, REVENUE ANALYTICS'
 $content = $content -replace 'CLIENTS \.{10,} NORTHWIND LABS, HALIDE, QUILLWORKS, LUMENARY, KESTREL, VANTAGEFIELD, COBALTINE, MOONRAKE, HARBORLIGHT', 'CLIENTS ....... B2B SALES TEAMS, SAAS COMPANIES, E-COMMERCE BUSINESSES, FINANCIAL SERVICES, RETAIL, MANUFACTURING, TECHNOLOGY COMPANIES'
 $content = $content -replace 'KNOWS_ABOUT \.{10,} WEB DESIGN, BRAND IDENTITY, WEBGL, THREE\.JS, MOTION, TYPEFACE DESIGN, GROWTH MARKETING', 'KNOWS_ABOUT ... SALES INTELLIGENCE, PREDICTIVE ANALYTICS, CUSTOMER BEHAVIOR, PIPELINE MANAGEMENT, REVENUE FORECASTING, AI/ML'
-$content = $content -replace 'SUBLEVEL\.STUDIO IS A PORTO-BASED DIGITAL DESIGN AND ENGINEERING STUDIO\. WE BUILD HIGH-PERFORMANCE WEBSITES, BRAND SYSTEMS AND REAL-TIME 3D EXPERIENCES FOR TECHNOLOGY COMPANIES AND CREATORS\.', 'SIGGMA.AI IS AN AI-POWERED SALES SUPPORT AND SALES INTELLIGENCE PLATFORM. WE HELP SALES TEAMS TURN BUSINESS AND SALES DATA INTO ACTIONABLE INTELLIGENCE.'
-$content = $content -replace 'FOUNDED IN 2021, THE STUDIO PARTNERS WITH STARTUPS AND ESTABLISHED BRANDS ACROSS EUROPE AND NORTH AMERICA, FROM FIRST IDENTITY TO PRODUCTION ENGINEERING\.', 'SIGGMA.AI USES PREDICTIVE ANALYTICS, MACHINE LEARNING, AND AI TO HELP TEAMS FORECAST SALES, IDENTIFY OPPORTUNITIES, UNDERSTAND CUSTOMERS, AND MAKE BETTER DECISIONS.'
+$content = $content -replace 'SUBLEVEL\.STUDIO IS A PORTO-BASED DIGITAL DESIGN AND ENGINEERING STUDIO\. WE BUILD HIGH-PERFORMANCE WEBSITES, BRAND SYSTEMS AND REAL-TIME 3D EXPERIENCES FOR TECHNOLOGY COMPANIES AND CREATORS\.', 'signin.ai IS AN AI-POWERED SALES SUPPORT AND SALES INTELLIGENCE PLATFORM. WE HELP SALES TEAMS TURN BUSINESS AND SALES DATA INTO ACTIONABLE INTELLIGENCE.'
+$content = $content -replace 'FOUNDED IN 2021, THE STUDIO PARTNERS WITH STARTUPS AND ESTABLISHED BRANDS ACROSS EUROPE AND NORTH AMERICA, FROM FIRST IDENTITY TO PRODUCTION ENGINEERING\.', 'signin.ai USES PREDICTIVE ANALYTICS, MACHINE LEARNING, AND AI TO HELP TEAMS FORECAST SALES, IDENTIFY OPPORTUNITIES, UNDERSTAND CUSTOMERS, AND MAKE BETTER DECISIONS.'
 $content = $content -replace '── CAPABILITIES ──────────────────────────────────────────────────', '── CAPABILITIES ──────────────────────────────────────────────────'
 
 # ── JAVASCRIPT TEXT STRINGS ──────────────────────────────────────
-# Canvas texture: neon sign 'sublevel.' → 'siggma.'
-$content = $content -replace "g\.strokeText\('sublevel\.',", "g.strokeText('siggma.',"
-$content = $content -replace "g\.fillText\('sublevel\.',", "g.fillText('siggma.',"
+# Canvas texture: neon sign 'sublevel.' → 'signin.'
+$content = $content -replace "g\.strokeText\('sublevel\.',", "g.strokeText('signin.',"
+$content = $content -replace "g\.fillText\('sublevel\.',", "g.fillText('signin.',"
 
-# Canvas texture: 'SUBLEVEL' → 'SIGGMA'
-$content = $content -replace "g\.fillText\('SUBLEVEL',", "g.fillText('SIGGMA',"
+# Canvas texture: 'SUBLEVEL' → 'signin'
+$content = $content -replace "g\.fillText\('SUBLEVEL',", "g.fillText('signin',"
 
 # Canvas texture: 'SBLVL' → 'SGMA'
 $content = $content -replace "g\.strokeText\('SBLVL',", "g.strokeText('SGMA',"
 $content = $content -replace "g\.fillText\('SBLVL',", "g.fillText('SGMA',"
 
-# Marquee ticker: 'SUBLEVEL   ///   WE BUILD THE STUFF PEOPLE REMEMBER' → Siggma.ai
-$content = $content -replace "SUBLEVEL   ///   WE BUILD THE STUFF PEOPLE REMEMBER   ///   OPEN LATE   ///   NOW PLA", "SIGGMA.AI   ///   SALES INTELLIGENCE THAT DRIVES REVENUE   ///   AI-POWERED   ///   NOW REA"
+# Marquee ticker: 'SUBLEVEL   ///   WE BUILD THE STUFF PEOPLE REMEMBER' → signin.ai
+$content = $content -replace "SUBLEVEL   ///   WE BUILD THE STUFF PEOPLE REMEMBER   ///   OPEN LATE   ///   NOW PLA", "signin.ai   ///   SALES INTELLIGENCE THAT DRIVES REVENUE   ///   AI-POWERED   ///   NOW REA"
 
-# Arcade game: 'SUBLEVEL DEFENDER' → 'SIGGMA DEFENDER'
-$content = $content -replace "SUBLEVEL DEFENDER", "SIGGMA DEFENDER"
+# Arcade game: 'SUBLEVEL DEFENDER' → 'signin DEFENDER'
+$content = $content -replace "SUBLEVEL DEFENDER", "signin DEFENDER"
 
 # Arcade game header text
 $content = $content -replace "g\.fillText\('1 PLAYER'", "g.fillText('1 PLAYER'"
 
 # ── MACHINE INDEX ASCII ART ──────────────────────────────────────
-# The ASCII art banner says SUBLEVEL - replace with simplified siggma
-$content = $content -replace 'SUBLEVEL\.STUDIO :: MACHINE-READABLE INDEX', 'SIGGMA.AI :: MACHINE-READABLE INDEX'
+# The ASCII art banner says SUBLEVEL - replace with simplified signin
+$content = $content -replace 'SUBLEVEL\.STUDIO :: MACHINE-READABLE INDEX', 'signin.ai :: MACHINE-READABLE INDEX'
 
 # ── CRT TERMINAL / SUBLEVEL_LOG ──────────────────────────────────
 # These are the terminal lines that appear in the machine-readable view
 # The ASCII art block is in SUBLEVEL_LOG JS array - need to replace specific strings
-$content = $content -replace '"SUBLEVEL\.STUDIO :: MACHINE-READABLE INDEX"', '"SIGGMA.AI :: MACHINE-READABLE INDEX"'
-$content = $content -replace '"# PLAIN-TEXT MIRROR OF SUBLEVEL\.STUDIO FOR AI AGENTS, CRAWLERS, AND HUMANS WHO"', '"# PLAIN-TEXT MIRROR OF SIGGMA.AI FOR AI AGENTS, CRAWLERS, AND HUMANS WHO"'
+$content = $content -replace '"SUBLEVEL\.STUDIO :: MACHINE-READABLE INDEX"', '"signin.ai :: MACHINE-READABLE INDEX"'
+$content = $content -replace '"# PLAIN-TEXT MIRROR OF SUBLEVEL\.STUDIO FOR AI AGENTS, CRAWLERS, AND HUMANS WHO"', '"# PLAIN-TEXT MIRROR OF signin.ai FOR AI AGENTS, CRAWLERS, AND HUMANS WHO"'
 $content = $content -replace '"  PREFER IT RAW\."', '"  PREFER IT RAW."'
-$content = $content -replace '"NAME \.{10,} SUBLEVEL\.STUDIO"', '"NAME .......... SIGGMA.AI"'
-$content = $content -replace '"AKA \.{10,} SUBLEVEL, SBLVL, SUBLEVELSTUDIO"', '"AKA ........... SIGGMA, SIGGMAAI"'
+$content = $content -replace '"NAME \.{10,} SUBLEVEL\.STUDIO"', '"NAME .......... signin.ai"'
+$content = $content -replace '"AKA \.{10,} SUBLEVEL, SBLVL, SUBLEVELSTUDIO"', '"AKA ........... signin, signinAI"'
 $content = $content -replace '"FOUNDED \.{10,} 2021"', '"FOUNDED ....... 2024"'
 $content = $content -replace '"LOCATION \.{10,} PORTO, PORTUGAL \(PT\)"', '"LOCATION ...... WORLDWIDE"'
-$content = $content -replace '"SUBLEVEL\.STUDIO IS A PORTO-BASED DIGITAL DESIGN AND ENGINEERING STUDIO\. WE"', '"SIGGMA.AI IS AN AI-POWERED SALES SUPPORT AND SALES INTELLIGENCE PLATFORM. WE"'
+$content = $content -replace '"SUBLEVEL\.STUDIO IS A PORTO-BASED DIGITAL DESIGN AND ENGINEERING STUDIO\. WE"', '"signin.ai IS AN AI-POWERED SALES SUPPORT AND SALES INTELLIGENCE PLATFORM. WE"'
 $content = $content -replace '"  BUILD HIGH-PERFORMANCE WEBSITES, BRAND SYSTEMS AND REAL-TIME 3D EXPERIENCES"', '"  HELP SALES TEAMS TURN BUSINESS AND SALES DATA INTO ACTIONABLE INTELLIGENCE."'
 $content = $content -replace '"  FOR TECHNOLOGY COMPANIES AND CREATORS\."', '"  FORECAST SALES, IDENTIFY OPPORTUNITIES, AND MAKE BETTER DECISIONS."'
-$content = $content -replace '"FOUNDED IN 2021, THE STUDIO PARTNERS WITH STARTUPS AND ESTABLISHED BRANDS"', '"SIGGMA.AI USES PREDICTIVE ANALYTICS AND MACHINE LEARNING TO DELIVER SALES"'
+$content = $content -replace '"FOUNDED IN 2021, THE STUDIO PARTNERS WITH STARTUPS AND ESTABLISHED BRANDS"', '"signin.ai USES PREDICTIVE ANALYTICS AND MACHINE LEARNING TO DELIVER SALES"'
 $content = $content -replace '"  ACROSS EUROPE AND NORTH AMERICA, FROM FIRST IDENTITY TO PRODUCTION"', '"  INTELLIGENCE. FROM FORECASTING TO DECISION SUPPORT."'
 $content = $content -replace '"  ENGINEERING\."', '"  FULLY AI-POWERED."'
 $content = $content -replace '"SERVICES \.{10,} WEBSITE DESIGN AND ENGINEERING, VISUAL BRAND IDENTITY, REAL-"', '"SERVICES ...... SALES FORECASTING, OPPORTUNITY INTELLIGENCE, CUSTOMER"'
@@ -219,10 +219,10 @@ $content = $content -replace '/AI/HOME  /AI/SERVICES  /AI/SHOWCASE  /AI/PEOPLE  
 
 # ── MAILTO LINKS ─────────────────────────────────────────────────
 # Global replace any remaining mailto:hello@sublevel.studio
-$content = $content -replace 'mailto:hello@sublevel\.studio', 'mailto:hello@siggma.ai'
+$content = $content -replace 'mailto:hello@sublevel\.studio', 'mailto:hello@signin.ai'
 
 # ── CRT GAME ENTRY ───────────────────────────────────────────────
-$content = $content -replace "title: 'Sublevel Defender'", "title: 'Siggma Defender'"
+$content = $content -replace "title: 'Sublevel Defender'", "title: 'signin Defender'"
 $content = $content -replace "desc: 'The lobby arcade game\. Click the cabinet to play\.'", "desc: 'The lobby arcade game. Click the cabinet to play.'"
 $content = $content -replace "kind: 'Lab · Game'", "kind: 'Lab · Game'"
 
@@ -257,8 +257,8 @@ $content = $content -replace '- SHOP MOONRAKE — A CREATOR STOREFRONT THAT FEEL
 
 # ── LAB IN MACHINE INDEX ─────────────────────────────────────────
 $content = $content -replace '── LAB ───────────────────────────────────────────────────────────', '── DEMO ───────────────────────────────────────────────────────────'
-$content = $content -replace '- SUBLEVEL DEFENDER — PLAYABLE ON THE ARCADE CABINET IN THE 3D LOBBY \(CLICK IT\)\.', '- SIGGMA DEFENDER — PLAYABLE ON THE ARCADE CABINET IN THE 3D LOBBY (CLICK IT).'
-$content = $content -replace '- SBLVL SHOT — DRAG-TO-THROW BASKETBALL ON THE LOBBY HOOP \(CLICK THE BACKBOARD\)\.', '- SIGGMA SHOT — DRAG-TO-THROW BASKETBALL ON THE LOBBY HOOP (CLICK THE BACKBOARD).'
+$content = $content -replace '- SUBLEVEL DEFENDER — PLAYABLE ON THE ARCADE CABINET IN THE 3D LOBBY \(CLICK IT\)\.', '- signin DEFENDER — PLAYABLE ON THE ARCADE CABINET IN THE 3D LOBBY (CLICK IT).'
+$content = $content -replace '- SBLVL SHOT — DRAG-TO-THROW BASKETBALL ON THE LOBBY HOOP \(CLICK THE BACKBOARD\)\.', '- signin SHOT — DRAG-TO-THROW BASKETBALL ON THE LOBBY HOOP (CLICK THE BACKBOARD).'
 
 # ── OPEN_POSITIONS IN MACHINE INDEX ─────────────────────────────
 $content = $content -replace '── OPEN_POSITIONS ────────────────────────────────────────────────', '── TEAM ────────────────────────────────────────────────────────────'
@@ -266,15 +266,15 @@ $content = $content -replace '- VISUAL DESIGNER \(DESIGN, REMOTE / PORTO\)', '- 
 $content = $content -replace '- CREATIVE DEVELOPER \(ENGINEERING, REMOTE\)', '- REVENUE OPERATIONS'
 
 # ── CONTACT IN MACHINE INDEX ─────────────────────────────────────
-$content = $content -replace 'GENERAL \.{10,} HELLO@SUBLEVEL\.STUDIO', 'GENERAL ....... HELLO@SIGGMA.AI'
-$content = $content -replace 'NEW BUSINESS \.{10,} SALES@SUBLEVEL\.STUDIO', 'NEW BUSINESS .. SALES@SIGGMA.AI'
+$content = $content -replace 'GENERAL \.{10,} HELLO@SUBLEVEL\.STUDIO', 'GENERAL ....... HELLO@signin.ai'
+$content = $content -replace 'NEW BUSINESS \.{10,} SALES@SUBLEVEL\.STUDIO', 'NEW BUSINESS .. SALES@signin.ai'
 # '/AI/CONTACT' is fine as-is
 
 # ── window.__sblvl debug API ─────────────────────────────────────
 $content = $content -replace 'window\.__sblvl', 'window.__sigmameta'
 
 # ── injectable so the sublevel ───────────────────────────────────
-$content = $content -replace 'injectable so the sublevel', 'injectable so the siggma'
+$content = $content -replace 'injectable so the sublevel', 'injectable so the signin'
 
 # ── TV CAPTION ENTRIES (JS array) ────────────────────────────────
 # These appear as TV screen content in the 3D lobby
@@ -283,6 +283,6 @@ $content = $content -replace "title: 'Kestrel Studios', kind: 'Website · Lookbo
 # Write output
 Set-Content -Path $dst -Value $content -Encoding UTF8 -NoNewline
 
-Write-Host "Done! Created siggma-ai.html"
+Write-Host "Done! Created signin-ai.html"
 $fileSize = (Get-Item $dst).Length
 Write-Host "File size: $([math]::Round($fileSize / 1MB, 2)) MB"

@@ -1,7 +1,7 @@
-import { SiggmaLandingPage } from "./components/SiggmaLandingPage";
+import { SigninLandingPage } from "./components/SigninLandingPage";
 
 function App() {
-  return <SiggmaLandingPage />;
+  return <SigninLandingPage />;
 }
 
 export default App;

@@ -3,13 +3,13 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 const here = path.dirname(fileURLToPath(import.meta.url));
-const target = path.join(here, "..", "public", "landing-pages", "siggma-ai.html");
+const target = path.join(here, "..", "public", "landing-pages", "signin-ai.html");
 let html = fs.readFileSync(target, "utf8");
 html = html.replace(/^\uFEFF+/, "");
 
 // True when the earlier passes already ran; those sections are then skipped
 // so the script is idempotent (safe to run repeatedly).
-const alreadyFixed = html.includes("const SIGGMA_LOG =") && html.includes("FOUNDED ....... 2024");
+const alreadyFixed = html.includes("const signin_LOG =") && html.includes("FOUNDED ....... 2024");
 
 const art = (() => {
   const dot = ".";
@@ -27,7 +27,7 @@ const art = (() => {
   return rows;
 })();
 
-console.log("SIGGMA banner preview:");
+console.log("signin banner preview:");
 for (const row of art) console.log(`  |${row}|`);
 
 function replaceOnce(source, find, replace, label) {
@@ -46,17 +46,17 @@ if (!alreadyFixed) {
   html = replaceOnce(
     html,
     'content="sublevel. is a digital studio & brand workshop building the stuff people remember. A single-file Three.js experience."',
-    'content="siggma.ai is an AI-powered sales support and sales intelligence platform. A single-file Three.js experience."',
+    'content="signin.ai is an AI-powered sales support and sales intelligence platform. A single-file Three.js experience."',
     "meta description",
   );
 
   // ── Nav brand aria-label ───────────────────────────────────────
-  html = replaceOnce(html, 'aria-label="sublevel.studio"', 'aria-label="siggma.ai"', "nav aria-label");
+  html = replaceOnce(html, 'aria-label="sublevel.studio"', 'aria-label="signin.ai"', "nav aria-label");
 
   // ── Footer copy (handles both literal © and &copy; encodings) ───
   const footerOld = /(&copy;|\u00a9) sublevel\.studio LLC 2026 all rights reserved/;
   if (footerOld.test(html)) {
-    html = html.replace(footerOld, "&copy; siggma.ai 2024 &mdash; AI-powered sales intelligence");
+    html = html.replace(footerOld, "&copy; signin.ai 2024 &mdash; AI-powered sales intelligence");
   } else {
     console.warn("WARN: footer copy pattern missing");
   }
@@ -129,14 +129,14 @@ preInner = replaceOnce(
 preInner = preInner.replace(/── SELECTED_WORK ─+/, (m) => m.replace("SELECTED_WORK", "AI CAPABILITIES"));
 preInner = preInner.replace(/── LAB ─+/, (m) => m.replace("LAB", "DEMO"));
 preInner = preInner.replace(/── OPEN_POSITIONS ─+/, (m) => m.replace("OPEN_POSITIONS", "TEAM"));
-preInner = replaceOnce(preInner, "- SBLVL SHOT — DRAG-TO-THROW BASKETBALL ON THE LOBBY HOOP (CLICK THE BACKBOARD).", "- SIGGMA SHOT — DRAG-TO-THROW BASKETBALL ON THE LOBBY HOOP (CLICK THE BACKBOARD).", "pre SBLVL SHOT");
-preInner = replaceOnce(preInner, "GENERAL ....... hello@siggma.ai", "GENERAL ....... HELLO@SIGGMA.AI", "pre GENERAL");
-preInner = replaceOnce(preInner, "NEW BUSINESS .. SALES@SUBLEVEL.STUDIO", "NEW BUSINESS .. SALES@SIGGMA.AI", "pre NEW BUSINESS");
+preInner = replaceOnce(preInner, "- SBLVL SHOT — DRAG-TO-THROW BASKETBALL ON THE LOBBY HOOP (CLICK THE BACKBOARD).", "- signin SHOT — DRAG-TO-THROW BASKETBALL ON THE LOBBY HOOP (CLICK THE BACKBOARD).", "pre SBLVL SHOT");
+preInner = replaceOnce(preInner, "GENERAL ....... hello@signin.ai", "GENERAL ....... HELLO@signin.ai", "pre GENERAL");
+preInner = replaceOnce(preInner, "NEW BUSINESS .. SALES@SUBLEVEL.STUDIO", "NEW BUSINESS .. SALES@signin.ai", "pre NEW BUSINESS");
 
 html = html.slice(0, preOpen + preStartTag.length) + preInner + html.slice(preClose);
 
 // ── Rename any remaining SUBLEVEL_LOG identifiers ────────────────
-html = html.replaceAll("SUBLEVEL_LOG", "SIGGMA_LOG");
+html = html.replaceAll("SUBLEVEL_LOG", "signin_LOG");
 }
 
 // ── Rebrand leftover project lines in the machine index <pre> ────
@@ -164,8 +164,8 @@ function matchParenEnd(doc, from) {
   return -1;
 }
 function declarationEnd(doc, arrStart) {
-  const open = arrStart + "const SIGGMA_LOG = ".length;
-  if (doc[open] !== '[') return arrStart + "const SIGGMA_LOG = []".length;
+  const open = arrStart + "const signin_LOG = ".length;
+  if (doc[open] !== '[') return arrStart + "const signin_LOG = []".length;
   const arrEnd = matchBracketEnd(doc, open);
   if (arrEnd === -1) return -1;
   let i = arrEnd;
@@ -180,14 +180,14 @@ function declarationEnd(doc, arrStart) {
   return i;
 }
 function rebuildTerminalArray(doc, preText) {
-  const arrStart = doc.indexOf("const SIGGMA_LOG = [");
+  const arrStart = doc.indexOf("const signin_LOG = [");
   if (arrStart === -1) {
-    console.warn("WARN: SIGGMA_LOG array not found; skipping terminal rebuild");
+    console.warn("WARN: signin_LOG array not found; skipping terminal rebuild");
     return doc;
   }
   const declEnd = declarationEnd(doc, arrStart);
   if (declEnd === -1) {
-    console.warn("WARN: SIGGMA_LOG declaration unterminated; skipping terminal rebuild");
+    console.warn("WARN: signin_LOG declaration unterminated; skipping terminal rebuild");
     return doc;
   }
   function wrapTo(line, width) {
@@ -223,7 +223,7 @@ function rebuildTerminalArray(doc, preText) {
       terminalLines.push([seg, role]);
     }
   }
-  const arraySource = `const SIGGMA_LOG = ${JSON.stringify(terminalLines)}.map(([text, role]) => text === '' ? [] : [seg(text, role)]);`;
+  const arraySource = `const signin_LOG = ${JSON.stringify(terminalLines)}.map(([text, role]) => text === '' ? [] : [seg(text, role)]);`;
   return doc.slice(0, arrStart) + arraySource + doc.slice(declEnd);
 }
 
@@ -270,7 +270,7 @@ const newPortfolio = `const PORTFOLIO = [
     g.font = '600 13px "Geist Mono"';
     ['HISTORICAL DATA', 'AI MODELS', 'SEASONALITY', 'TREND DETECTION'].forEach((s, i) => g.fillText(s, 24, 326 + i * 26));
     g.fillStyle = '#1c1c1c'; g.fillRect(24, h - 60, w - 48, 34);
-    g.fillStyle = '#e6e6e6'; g.font = '600 12px "Geist Mono"'; g.fillText('SIGGMA.AI // SALES', 40, h - 46);
+    g.fillStyle = '#e6e6e6'; g.font = '600 12px "Geist Mono"'; g.fillText('signin.ai // SALES', 40, h - 46);
   } },
   { title: 'Opportunity Intelligence', kind: 'Scoring · AI', desc: 'Score and prioritize deals.', draw(g, w, h, t) {
     g.fillStyle = '#0a0a0a'; g.fillRect(0, 0, w, h);
@@ -281,7 +281,7 @@ const newPortfolio = `const PORTFOLIO = [
     g.font = '600 13px "Geist Mono"';
     ['AI SCORING', 'PRIORITIZATION', 'CONVERSION ODDS'].forEach((s, i) => g.fillText(s, 24, 326 + i * 26));
     g.fillStyle = '#1c1c1c'; g.fillRect(24, h - 60, w - 48, 34);
-    g.fillStyle = '#e6e6e6'; g.font = '600 12px "Geist Mono"'; g.fillText('SIGGMA.AI // PIPELINE', 40, h - 46);
+    g.fillStyle = '#e6e6e6'; g.font = '600 12px "Geist Mono"'; g.fillText('signin.ai // PIPELINE', 40, h - 46);
   } },
   { title: 'Customer Intelligence', kind: 'Behavior · Engagement', desc: 'Know every customer.', draw(g, w, h, t) {
     g.fillStyle = '#0a0a0a'; g.fillRect(0, 0, w, h);
@@ -292,7 +292,7 @@ const newPortfolio = `const PORTFOLIO = [
     g.font = '600 13px "Geist Mono"';
     ['BEHAVIOR', 'SEGMENTS', 'ENGAGEMENT', 'PATTERNS'].forEach((s, i) => g.fillText(s, 24, 326 + i * 26));
     g.fillStyle = '#1c1c1c'; g.fillRect(24, h - 60, w - 48, 34);
-    g.fillStyle = '#e6e6e6'; g.font = '600 12px "Geist Mono"'; g.fillText('SIGGMA.AI // CUSTOMERS', 40, h - 46);
+    g.fillStyle = '#e6e6e6'; g.font = '600 12px "Geist Mono"'; g.fillText('signin.ai // CUSTOMERS', 40, h - 46);
   } },
   { title: 'Pipeline Intelligence', kind: 'Deals · Risk', desc: 'Spot risk before it stalls.', draw(g, w, h, t) {
     g.fillStyle = '#0a0a0a'; g.fillRect(0, 0, w, h);
@@ -303,7 +303,7 @@ const newPortfolio = `const PORTFOLIO = [
     g.font = '600 13px "Geist Mono"';
     ['BOTTLENECKS', 'DEAL RISK', 'REVENUE'].forEach((s, i) => g.fillText(s, 24, 326 + i * 26));
     g.fillStyle = '#1c1c1c'; g.fillRect(24, h - 60, w - 48, 34);
-    g.fillStyle = '#e6e6e6'; g.font = '600 12px "Geist Mono"'; g.fillText('SIGGMA.AI // PIPELINE', 40, h - 46);
+    g.fillStyle = '#e6e6e6'; g.font = '600 12px "Geist Mono"'; g.fillText('signin.ai // PIPELINE', 40, h - 46);
   } },
   { title: 'Revenue Analytics', kind: 'Data · Metrics', desc: 'Metrics that matter.', draw(g, w, h, t) {
     g.fillStyle = '#0a0a0a'; g.fillRect(0, 0, w, h);
@@ -314,7 +314,7 @@ const newPortfolio = `const PORTFOLIO = [
     g.font = '600 13px "Geist Mono"';
     ['FORECASTS', 'TRENDS', 'INSIGHTS'].forEach((s, i) => g.fillText(s, 24, 326 + i * 26));
     g.fillStyle = '#1c1c1c'; g.fillRect(24, h - 60, w - 48, 34);
-    g.fillStyle = '#e6e6e6'; g.font = '600 12px "Geist Mono"'; g.fillText('SIGGMA.AI // REVENUE', 40, h - 46);
+    g.fillStyle = '#e6e6e6'; g.font = '600 12px "Geist Mono"'; g.fillText('signin.ai // REVENUE', 40, h - 46);
   } },
   { title: 'Performance Intelligence', kind: 'Teams · Coaching', desc: 'Coaching for every rep.', draw(g, w, h, t) {
     g.fillStyle = '#0a0a0a'; g.fillRect(0, 0, w, h);
@@ -325,7 +325,7 @@ const newPortfolio = `const PORTFOLIO = [
     g.font = '600 13px "Geist Mono"';
     ['TEAMS', 'COVERAGE', 'TRENDS'].forEach((s, i) => g.fillText(s, 24, 326 + i * 26));
     g.fillStyle = '#1c1c1c'; g.fillRect(24, h - 60, w - 48, 34);
-    g.fillStyle = '#e6e6e6'; g.font = '600 12px "Geist Mono"'; g.fillText('SIGGMA.AI // TEAMS', 40, h - 46);
+    g.fillStyle = '#e6e6e6'; g.font = '600 12px "Geist Mono"'; g.fillText('signin.ai // TEAMS', 40, h - 46);
   } },
 ];`;
 const portfolioStart = html.indexOf("const PORTFOLIO = [");
@@ -431,22 +431,22 @@ if (leftover) {
   console.warn(`LEFTOVER SIGNS: ${JSON.stringify(leftover)}`);
   process.exitCode = 1;
 } else {
-  console.log("OK: no sublevel/sblvl text remains in siggma-ai.html");
+  console.log("OK: no sublevel/sblvl text remains in signin-ai.html");
 }
 for (const marker of [
-  "siggma.ai is an AI-powered sales support",
-  'aria-label="siggma.ai"',
+  "signin.ai is an AI-powered sales support",
+  'aria-label="signin.ai"',
   "AI-powered sales intelligence",
-  "SIGGMA.AI :: MACHINE-READABLE INDEX",
+  "signin.ai :: MACHINE-READABLE INDEX",
   "FOUNDED ....... 2024",
   "LOCATION ...... WORLDWIDE",
-  "const SIGGMA_LOG =",
-  "SIGGMA DEFENDER",
-  "SIGGMA SHOT",
+  "const signin_LOG =",
+  "signin DEFENDER",
+  "signin SHOT",
   "── AI CAPABILITIES",
   "── DEMO ─",
   "── TEAM ─",
-  "NEW BUSINESS .. SALES@SIGGMA.AI",
+  "NEW BUSINESS .. SALES@signin.ai",
 ]) {
   if (!html.includes(marker)) console.warn(`MISSING MARKER: ${marker}`);
 }

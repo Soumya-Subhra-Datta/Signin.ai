@@ -3,7 +3,7 @@ import { execFileSync } from "node:child_process";
 import path from "node:path";
 
 const CAN = "public/sublevel-studio.html";
-const OUR = "public/landing-pages/siggma-ai.html";
+const OUR = "public/landing-pages/signin-ai.html";
 
 const canRaw = fs.readFileSync(CAN, "utf8").replace(/^\uFEFF+/, "");
 const ourRaw = fs.readFileSync(OUR, "utf8").replace(/^\uFEFF+/, "");
@@ -18,7 +18,7 @@ if (lastOpen === -1 || lastClose === -1) throw new Error("could not locate canon
 const cont = cl.slice(lastOpen + 1, lastClose).join("\n");
 
 // ---- transforms ---------------------------------------------------
-let s = cont.replaceAll("SUBLEVEL_LOG", "SIGGMA_LOG");
+let s = cont.replaceAll("SUBLEVEL_LOG", "signin_LOG");
 
 function matchBracketEnd(str, from) {
   let depth = 0;
@@ -31,22 +31,22 @@ function matchBracketEnd(str, from) {
   return -1;
 }
 
-// Rebuild the SIGGMA_LOG declaration exactly like the canonical one:
-//   const SIGGMA_LOG = [ ...rows... ].map(([text, role]) => text === '' ? [] : [seg(text, role)]);
+// Rebuild the signin_LOG declaration exactly like the canonical one:
+//   const signin_LOG = [ ...rows... ].map(([text, role]) => text === '' ? [] : [seg(text, role)]);
 // using OUR (already-rebranded) terminal rows from the current file.
 const ol = ourRaw.split("\n");
 let arrLine = null;
-for (const l of ol) if (/^\s*const SIGGMA_LOG = \[\[/.test(l)) { arrLine = l; break; }
-if (!arrLine) throw new Error("our SIGGMA_LOG declaration line not found");
+for (const l of ol) if (/^\s*const signin_LOG = \[\[/.test(l)) { arrLine = l; break; }
+if (!arrLine) throw new Error("our signin_LOG declaration line not found");
 const openB = arrLine.indexOf("[");
 const endB = matchBracketEnd(arrLine, openB);
-if (endB === -1) throw new Error("our SIGGMA_LOG array is unterminated");
+if (endB === -1) throw new Error("our signin_LOG array is unterminated");
 const arrJSON = arrLine.slice(openB, endB);
 JSON.parse(arrJSON); // validate
-const newDecl = "  const SIGGMA_LOG = " + arrJSON + ".map(([text, role]) => text === '' ? [] : [seg(text, role)]);";
+const newDecl = "  const signin_LOG = " + arrJSON + ".map(([text, role]) => text === '' ? [] : [seg(text, role)]);";
 
-s = s.replace(/^\s*const SIGGMA_LOG = \[.*$/m, () => newDecl);
-s = s.replaceAll("hello@sublevel.studio", "hello@siggma.ai");
+s = s.replace(/^\s*const signin_LOG = \[.*$/m, () => newDecl);
+s = s.replaceAll("hello@sublevel.studio", "hello@signin.ai");
 
 // ---- branding sweep on rebuilt block ------------------------------
 const brands = ["SUBLEVEL","SBLVL","sublevel","sublvl","Northwind","Halide","Lumenary","Kestrel","Cobaltine","Quillworks","Moonrake","Signalhaus","Vantagefield","Harborlight","Eight selected","Storefront"];
