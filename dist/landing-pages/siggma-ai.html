@@ -499,7 +499,7 @@ footer .social .copy{text-align:right;color:var(--g1)}
 /* footer hardening — keep footer text inside the safe area on every browser and
    stop the wordmark from dominating the layout */
 footer .grid-layout{padding-left:max(34px,var(--gutter))!important;padding-right:max(34px,var(--gutter))!important}
-footer .mark svg{width:min(100%,clamp(300px,34vw,560px));height:auto;display:block}
+footer .mark svg{width:min(100%,clamp(300px,34vw,560px));height:auto;display:block;overflow:visible!important}
 footer .links,footer .social,footer .copy{min-width:0;padding-left:0;padding-right:0;box-sizing:border-box}
 
 #vhs-overlay{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:900;mix-blend-mode:screen;opacity:.9}
@@ -1114,7 +1114,7 @@ body.machine #topnav,body.machine #layout{display:none}
   </div>
 
   <div class="grid-layout">
-    <div class="mark"><svg viewBox="0 0 1673 149" xmlns="http://www.w3.org/2000/svg" aria-label="signin.ai"><text x="0" y="140" textLength="1673" lengthAdjust="spacingAndGlyphs" font-family="Geist, 'Geist Fallback', Arial, sans-serif" font-weight="500" font-size="196" letter-spacing="-6">signin.ai</text></svg></div>
+    <div class="mark"><svg viewBox="0 0 1673 295" overflow="visible" xmlns="http://www.w3.org/2000/svg" aria-label="signin.ai"><text x="0" y="214" textLength="1673" lengthAdjust="spacingAndGlyphs" font-family="Geist, 'Geist Fallback', Arial, sans-serif" font-weight="500" font-size="196" letter-spacing="-6">signin.ai</text></svg></div>
   </div>
 
   <div class="grid-layout bottom">
